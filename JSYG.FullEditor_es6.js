@@ -1419,9 +1419,10 @@ export default class FullEditor extends JSYG {
 
         _adjustSize() {
             const contenu = new JSYG( this.getDocument() );
-            const dim = contenu.length && contenu.getDim() || {width:0, height:0};
+          const dim = contenu.length && contenu.getDim() || {width:0, height:0};
 
             new JSYG(this._frameShadow).add(this._frame).attr({
+            //new JSYG(this._frameShadow).attr({
                 width:dim.width,
                 height:dim.height
             });

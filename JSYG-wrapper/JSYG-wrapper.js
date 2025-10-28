@@ -133,7 +133,7 @@ export default   function JSYG(arg,context) {
         return this;
     }
 	
-    JSYG.fn = JSYG.prototype = new $();
+   JSYG.fn = JSYG.prototype = new $();
 		
     //JSYG.prototype.constructor = JSYG;
 	
@@ -298,6 +298,48 @@ import { isArrayLike } from "../jquery/src/core/isArrayLike.js";
                 return obj;
         };
 
+   JSYG.prototype.each2 = function(obj, callback) {
+	   console.log("----each2");
+                var length, i = 0;
+
+                if ( isArrayLike( obj ) ) {
+                        length = obj.length;
+                        for ( ; i < length; i++ ) {
+                                if ( callback.call( obj[ i ], i, obj[ i ] ) === false ) {
+                                        break;
+                                }
+                        }
+                } else {
+                        for ( i in obj ) {
+                                if ( callback.call( obj[ i ], i, obj[ i ] ) === false ) {
+                                        break;
+                                }
+                        }
+                }
+
+                return obj;
+        };
+
+    JSYG.prototype.add = function( args) {
+	   // console.log("----add",args);
+           this.push( args[0] );
+	   return this
+
+	    /*
+               this.each2( args, function( _, arg ) {
+                       if ( typeof arg === "function" ) {
+                               if ( !options.unique || !self.has( arg ) ) {
+                                       this.push( arg[0] );
+                               }
+                       } else if ( arg && arg.length && toType( arg ) !== "string" ) {
+
+                               // Inspect recursively
+                               add( arg );
+                       }
+               } );
+	    return this;
+*/
+    };
 
 /*
     JSYG.each = function(list,callback) {
